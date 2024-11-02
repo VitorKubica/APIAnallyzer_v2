@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34714.143
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APIAnallyzer_v2", "APIAnallyzer_v2.csproj", "{2AB0CAD7-7F1F-485C-88A3-5A92BA55766A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2AB0CAD7-7F1F-485C-88A3-5A92BA55766A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2AB0CAD7-7F1F-485C-88A3-5A92BA55766A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2AB0CAD7-7F1F-485C-88A3-5A92BA55766A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2AB0CAD7-7F1F-485C-88A3-5A92BA55766A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {56BD2441-7BAC-4653-99AD-79D202E89457}
+	EndGlobalSection
+EndGlobal
