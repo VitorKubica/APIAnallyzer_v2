@@ -79,23 +79,27 @@ namespace APIAnallyzer_v2.Services
             {
                 throw new ArgumentException("O CNPJ informado não é válido.");
             }
-            var cnpjExists = await _campaigns.Find(Builders<Campaign>.Filter.Eq(c => c.CNPJ, campaignDto.CNPJ)).FirstOrDefaultAsync();
-            if (cnpjExists != null) throw new InvalidOperationException("O CNPJ informado já está cadastrado. Por favor, use outro CNPJ.");
             
+            var cnpjExists = await _campaigns
+                .Find(Builders<Campaign>.Filter.Eq(c => c.CNPJ, campaignDto.CNPJ))
+                .FirstOrDefaultAsync();
+            if (cnpjExists != null) throw new InvalidOperationException("O CNPJ informado já está cadastrado. Por favor, use outro CNPJ.");
+        
             if (!_validationService.IsValidEmail(campaignDto.Email))
             {
                 throw new ArgumentException("O e-mail informado não é válido.");
             }
-    
-            var emailExists = await _campaigns.Find(Builders<Campaign>.Filter.Eq(c => c.Email, campaignDto.Email)).FirstOrDefaultAsync();
+        
+            var emailExists = await _campaigns
+                .Find(Builders<Campaign>.Filter.Eq(c => c.Email, campaignDto.Email))
+                .FirstOrDefaultAsync();
             if (emailExists != null) throw new InvalidOperationException("O e-mail informado já está cadastrado. Por favor, use outro e-mail.");
-            
-            // Chama a validação assíncrona da API
+        
             if (!await _validationService.IsEmailValidAsync(campaignDto.Email))
-            {
-                throw new ArgumentException("O e-mail informado é considerado inválido pela API.");
-            }
-            
+                {
+                    throw new ArgumentException("O e-mail informado é considerado inválido pela API.");
+                }
+                
             var campaign = new Campaign
             {
                 Name = campaignDto.Name,
@@ -107,10 +111,11 @@ namespace APIAnallyzer_v2.Services
                 ForecastDate = campaignDto.ForecastDate,
                 Status = campaignDto.Status
             };
-
+        
             await _campaigns.InsertOneAsync(campaign);
             return campaign;
         }
+
 
         public async Task<bool> DeleteCampaignAsync(string id)
         {

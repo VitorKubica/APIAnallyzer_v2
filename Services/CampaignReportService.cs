@@ -16,48 +16,21 @@ namespace APIAnallyzer_v2.Services
             _collection = database.GetCollection<CampaignReport>("campaignReports");
         }
 
-        public async Task<CampaignReport> CreateCampaignAsync(CampaignReportDTO campaignReportDto)
+        public async Task<CampaignReport> CreateAsync(CampaignReportDTO campaignReportDto)
         {
-            
-            var campaignReport = new CampaignReport()
-            {
-                
-            };
-
+            var campaignReport = MapToEntity(campaignReportDto);
             await _collection.InsertOneAsync(campaignReport);
             return campaignReport;
         }
 
-        public Task<CampaignReport> CreateAsync(CampaignReport campaignReport)
+        public async Task<CampaignReport> GetByIdAsync(string id)
         {
-            throw new NotImplementedException();
+            return await _collection.Find(x => x.Id == id).FirstOrDefaultAsync();
         }
 
-        Task<CampaignReport> ICampaignReportService.GetByIdAsync(string id)
+        public async Task<IEnumerable<CampaignReport>> GetAllAsync()
         {
-            throw new NotImplementedException();
-        }
-
-        Task<IEnumerable<CampaignReport>> ICampaignReportService.GetAllAsync()
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<bool> UpdateAsync(string id, CampaignReport campaignReport)
-        {
-            throw new NotImplementedException();
-        }
-
-        public async Task<CampaignReportDTO> GetByIdAsync(string id)
-        {
-            var report = await _collection.Find(x => x.Id == id).FirstOrDefaultAsync();
-            return report != null ? MapToDto(report) : null;
-        }
-
-        public async Task<IEnumerable<CampaignReportDTO>> GetAllAsync()
-        {
-            var reports = await _collection.Find(x => true).ToListAsync();
-            return reports.Select(MapToDto);
+            return await _collection.Find(x => true).ToListAsync();
         }
 
         public async Task<bool> UpdateAsync(string id, CampaignReportDTO campaignReportDto)
@@ -75,22 +48,7 @@ namespace APIAnallyzer_v2.Services
             return result.IsAcknowledged && result.DeletedCount > 0;
         }
 
-        private CampaignReportDTO MapToDto(CampaignReport report)
-        {
-            return new CampaignReportDTO
-            {
-                CampaignId = report.CampaignId,
-                Clicks_7d = report.Clicks_7d,
-                Opens_7d = report.Opens_7d,
-                Sends_7d = report.Sends_7d,
-                Leads_7d = report.Leads_7d,
-                Clicks_30d = report.Clicks_30d,
-                Opens_30d = report.Opens_30d,
-                Sends_30d = report.Sends_30d,
-                Leads_30d = report.Leads_30d
-            };
-        }
-
+        // Mapeamento entre DTO e Entidade
         private CampaignReport MapToEntity(CampaignReportDTO dto)
         {
             return new CampaignReport

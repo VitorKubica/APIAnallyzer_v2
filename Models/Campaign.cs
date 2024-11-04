@@ -17,7 +17,7 @@ namespace APIAnallyzer_v2.Models
         [BsonElement("_id"), BsonRepresentation(BsonType.ObjectId)]
         [Required(ErrorMessage = "O Id é obrigatório.")]
         public String Id { get; set; }
-        
+       
         /// <summary>
         /// Nome da campanha.
         /// </summary>

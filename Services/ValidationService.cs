@@ -11,6 +11,7 @@ namespace APIAnallyzer_v2.Services
         public ValidationService(HttpClient httpClient)
         {
             _httpClient = httpClient;
+            _httpClient.DefaultRequestHeaders.Add("x-mails-api-key", "56bd511c-4610-4a49-961d-6ea0ae9073e0");
         }
 
         /// <summary>

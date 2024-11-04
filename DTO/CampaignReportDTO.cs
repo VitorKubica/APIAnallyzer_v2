@@ -46,10 +46,5 @@
         /// Número total de leads gerados pela campanha nos últimos 30 dias.
         /// </summary>
         public int Leads_30d { get; set; }
-
-        /// <summary>
-        /// Identificador único do relatório da campanha. Este campo é opcional.
-        /// </summary>
-        public string? Id { get; set; }
     }
 }
